@@ -17,7 +17,21 @@ const sheets = google.sheets({ version: 'v4', auth });
 const SPREADSHEET_ID = process.env.SPREADSHEET_ID;
 const SHEET_NAME = 'Conversaciones';
 
-const { state, saveCreds } = await useMultiFileAuthState('./session');
+async function startBot() {
+  const { state, saveCreds } = await useMultiFileAuthState('./session');
+  
+  const sock = makeWASocket({
+    logger: P({ level: 'silent' }),
+    printQRInTerminal: true,
+    auth: state
+  });
+
+  sock.ev.on('creds.update', saveCreds);
+
+  // Aquí dejas todo el resto del código que ya tenías...
+}
+
+startBot();
 
 async function startBot() {
   const sock = makeWASocket({
