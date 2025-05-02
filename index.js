@@ -17,7 +17,7 @@ const sheets = google.sheets({ version: 'v4', auth });
 const SPREADSHEET_ID = process.env.SPREADSHEET_ID;
 const SHEET_NAME = 'Conversaciones';
 
-const { state, saveState } = useSingleFileAuthState('./session.json');
+const { state, saveCreds } = await useMultiFileAuthState('./session');
 
 async function startBot() {
   const sock = makeWASocket({
@@ -26,7 +26,7 @@ async function startBot() {
     auth: state
   });
 
-  sock.ev.on('creds.update', saveState);
+  sock.ev.on('creds.update', saveCreds);
 
   sock.ev.on('messages.upsert', async ({ messages, type }) => {
     if (type !== 'notify') return;
