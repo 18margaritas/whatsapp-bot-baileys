@@ -1,0 +1,17 @@
+{
+  "name": "whatsapp-bot-baileys",
+  "version": "1.0.0",
+  "description": "Bot de WhatsApp con Baileys y Google Sheets",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@hapi/boom": "^11.1.4",
+    "@whiskeysockets/baileys": "^6.5.0",
+    "dotenv": "^16.4.5",
+    "fs": "^0.0.1-security",
+    "googleapis": "^133.0.0",
+    "pino": "^8.16.0"
+  }
+}
